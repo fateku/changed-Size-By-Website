@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" media="screen and  (max-width: 500px)">
+    <title>resize image</title>
+    <style>
+        * {
+            font-family: 微軟正黑體;
+            font-size: 20px;
+            margin: 0px;
+            padding: 0px;
+            background-color: #FFFFAA;
+        }
+        #div1 {
+            position: absolute;
+            width: 100%;
+            height: 440px;
+            max-width: 640px;
+        }
+
+        img {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            float: left;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="div1">
+        <img id="image1" src="images/shan.jpg">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            move_div();
+
+            //當視窗放大或縮小時呼叫move_div的函式
+            //讓div1置中
+            $(window).resize(move_div);
+            //$(window).on("resize",move_div);
+
+            function move_div() {
+                let windowWidth = $(window).width();
+                let windowHeight = $(window).height();
+                // console.log(windowWidth)
+                let divWidth = $("#div1").width();  //640
+                let divHeight = $("#div1").height(); //440
+                // console.log(divWidth);  
+                // divWidth=$("#div1").css("width");  //640px
+                // console.log(divWidth);
+
+                let top = (windowHeight - divHeight) / 2;
+                let left = (windowWidth - divWidth) / 2;
+
+                $("#div1").css("top", top).css("left", left); //使圖片在正中間
+            }
+        });
+    </script>
+</body>
+
+</html>
